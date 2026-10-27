@@ -53,3 +53,27 @@ DHCP er greit å ha så det satte jeg opp på ruterne. Det gjorde jeg i CLI på 
 6. end
 Med det får PCene på admin nettverket DHCP, så gjorde jeg det samme på Router Admin for support, og på Router Salg for salg.
 Når jeg da slo på DHCP på alle PCene fikk de en unik IP.
+Så configurerte jeg ruteren, satt IP til 192.168.40.10, mask til 255.255.255.0 og default gateway til 192.168.40.1.
+For å gjøre noe med serveren skrudde jeg på HTTP og endret litt på index.html så det sto Velkommen til FjordTek AS på siden. Så testet jeg om det fungerte ved å prøve å gå in på 192.168.40.10 i web browseren på serveren. Det funket, så testet jeg på en annen PC og det fungerte også. Nå tenkte jeg at det å skrive inn IP er litt kjedelig så jeg tenkte å gjøre det til noe annet ville være kult. For det måtte jeg ha DNS og det valgte jeg å gjøre på samme server (192.168.40.10). Da enablet jeg DNS service og under navn skrev jeg intranett.fjordtek.local og satte address til 192.168.40.10. Når jeg da skrev inn intranett.fjordtek.local i web browser på serveren kom jeg til siden, men på en annen PC i systemet fungerte det ikke. Og det var fordi de ikke viste at serveren var en DNS server. De kunne jeg ha konfigurert manuelt på vær PC, men da måtte jeg også hatt en statisk IP adresse på den og ikke brukt DHCP og det vill jeg ikke. Jeg var usikker på hva jeg måtte gjøre for å få den til å bli satt automatisk, men siden jeg ikke kunne sette den statisk med DHCP på så tenkte jeg at det hadde noe med det å gjøre. Og det hadde det. Så med litt undersøkelse fant jeg ut at hvis jeg åpner CLI på ruterne og skriver:
+1. configure terminal
+2. ip dhcp pool ADMIN (SALG/SUPPORT for de andre)
+3. dns 192.168.50.10
+4. end
+Så skrude av og på DHCP på vær PC fikk de en DNS Server registrert også. Og nå fungerte intranett.fjordtek.local i web browser på alle.
+Nå ville oppgaven at jeg skulle simulere noe på netverket mitt
+Krav: At to PCer på samme LAN kunne kommunisere
+Test: Brukte "sample PDU" funksjonen og trykket på support1 og 2.
+Forventet resultat: En pakke går fra Support1 til switch, så switch til Router og Support2, Router dropper den og Support2 tar den imot. Så sender Support et svar tilbake.
+Faktisk resultat: bestått
+
+Krav: Teste kommunikasjonen mellom Admin og Salg.
+Test: Brukte "sample PDU" og trykket på Admin1 og Salg1.
+Forventet ressultat: Pakken går til Admin Switch, så videre til Router Admin (192.168.10.1) så til Router Salg, som er vill være 10.0.0.2 så ut til Salg hov switch, Salg S 2, så Salg1 (192.168.20.23), sender Salg1 et svar til 192.168.20.1 (Router Salg), som så sender til 10.0.0.1 (Router Admin), så til 192.168.10.22 (Admin1).
+faktisk resultat: bestått
+
+Krav: Åpne intranettsiden med DNS-navn og se hvordan DNS og HTTP inngår i samme brukerhandling.
+Test: Åpne web browser på Admin1 og gå til intranett.fjordtek.local.
+Forventet resultat: Først sender Admin1 en forespørsel til DNS server (192.168.40.10) om hva IPen til intranett.fjordtek.local er. DNS server gir svar og forteller at det er 192.168.40.10, Admin1 spør så om å få tilgang til 192.168.40.10 sin nettside.
+Faktisk resultat: bestått
+
+Oppgaven var krevende, men overkommelig. Det å gjøre oppgaven var ok, men det å dokumentere er jeg usikker på om er bra. Beskriver jeg for mye? for lite? etc. Syntes det ble bra. Brukte også Kanban for å stykke opp oppgaven, men likte ikke å bruke det for denne type oppgave. Tror jeg hadde likt bedre å bruke det om det var en oppgave over en lenger periode, syntes det ble veldig Flytt fra "To do" til "in progress" jobbe 20-30 min så flytte til "Done" så jeg enten glemte å oppdatere den rett etter jeg var ferdig med noe eller oppdaterte rett etter jeg var ferdig og da miste flyten i arbeide jeg jobbet med, det la jeg spesielt merke til på Del 2.
