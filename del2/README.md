@@ -60,6 +60,7 @@ For å gjøre noe med serveren skrudde jeg på HTTP og endret litt på index.htm
 2. ip dhcp pool ADMIN (SALG/SUPPORT for de andre)
 3. dns 192.168.50.10
 4. end
+
 Så skrude av og på DHCP på vær PC fikk de en DNS Server registrert også. Og nå fungerte intranett.fjordtek.local i web browser på alle.
 Nå ville oppgaven at jeg skulle simulere noe på netverket mitt
 Krav: At to PCer på samme LAN kunne kommunisere
