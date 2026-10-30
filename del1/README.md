@@ -54,7 +54,7 @@ Så på klient pcen koblet jeg meg til mappen ved å:
 2. Legg til nettverksplassering
 3. "Neste"
 4. "Velg en egendefinert nettverksplasering"
-5. Skrev inn "\\192.168.1.10\Prosjektmappeuke43-44", 192.168.1.10 er som nevnt IPen til serveren og Prosjektmappeuke43-44 er navnet på den delte mappen.
+5. Skrev inn " \\192.168.1.10\Prosjektmappeuke43-44", 192.168.1.10 er som nevnt IPen til serveren og Prosjektmappeuke43-44 er navnet på den delte mappen.
 Med det var mappen delt og for å teste at alt fungerte prøvde jeg først å lage et tekst dokument på serveren i mappen som jeg ga navnet "Test", og sjekket at det dukket opp på klient PCen så lagde jeg et nytt tekts dokument på klient PCen som jeg ga navnet "test2" til på klient PCen. De begge dukket opp for begge. Så alt skal fungere.
 <img width="680" height="283" alt="image4" src="https://github.com/user-attachments/assets/8ee4954e-64b4-4cc6-81bf-0e80b34c713f" />
 
