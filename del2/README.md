@@ -51,6 +51,7 @@ DHCP er greit å ha så det satte jeg opp på ruterne. Det gjorde jeg i CLI på 
 4. network 192.168.10.0 255.255.255.0
 5. default-router 192.168.10.1
 6. end
+
 Med det får PCene på admin nettverket DHCP, så gjorde jeg det samme på Router Admin for support, og på Router Salg for salg.
 Når jeg da slo på DHCP på alle PCene fikk de en unik IP.
 Så configurerte jeg ruteren, satt IP til 192.168.40.10, mask til 255.255.255.0 og default gateway til 192.168.40.1.
